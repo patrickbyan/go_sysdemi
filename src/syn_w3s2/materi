@@ -1,0 +1,47 @@
+package materigo
+
+import (
+	"fmt"
+	"time"
+)
+
+func SayHello() {
+	fmt.Println("Hello, Patrick")
+}
+
+func sayHai(kata string) {
+	for i := 0; i < 5; i++ {
+		time.Sleep(100 * time.Millisecond)
+		fmt.Println(kata)
+	}
+}
+
+func Runner() {
+	go SayHello()
+	fmt.Println("Selamat Pagi")
+
+	// diam dulu 1 detik tunggu sayHello diexecute dulu
+	time.Sleep(1 * time.Second)
+
+	waktuAwal := time.Now()
+	// execute time tidak pakai go
+	sayHai("Selamat Pagi")
+
+	// pakai go
+	go sayHai("Selamat Pagi")
+	sayHai("Selamat Beraktivitas")
+	fmt.Println("Waktu yang dibutuhkan adalah", time.Since(waktuAwal)) // before: 1.0096799s vs after: 523.6954ms
+
+	// channel
+
+	channelUltah := make(chan string)
+	go func() {
+		time.Sleep(2 * time.Second)
+		ucapanSelamat := "Selamat ulang tahun"
+		channelUltah <- ucapanSelamat
+		fmt.Println("data sudah masuk kedalam channel")
+	}()
+
+	data := <-channelUltah
+	fmt.Println(data)
+}

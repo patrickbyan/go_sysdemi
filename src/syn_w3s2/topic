@@ -1,0 +1,24 @@
+go routine concurrent programming
+
+perbedaan konkuren dengan paralel
+
+paralel asynchronous
+konkuren synchronous
+
+proses harus pake memori gede
+thread ukurannya kecil
+
+thread merupakan segmentasi dari proses
+
+goroutine : thread ringan
+
+G goroutine
+M thread
+P processor
+
+rules goroutine: 
+goroutine tidak cocok kalau ditempatkan di fungsi yang ada return
+
+channel: 
+tempat komunikasi secara synchronous
+goroutine pengirim & goroutine penerima
