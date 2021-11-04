@@ -1,0 +1,4 @@
+golang modules
+
+- buat module di golang itu go mod init (namaProject)
+- cara pake go get (nama module)
